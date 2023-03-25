@@ -1,0 +1,59 @@
+h1 {
+    text-align: center;
+}
+
+label {
+    font-weight: bold;
+    font-size: large;
+}
+
+.container {
+    margin-top: 150px;
+    margin-left: 100px;
+}
+
+option {
+    text-align: center;
+    font-size: large;
+}
+
+select {
+    font-size: larger;
+    width: 300px;
+}
+
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+}
+
+th {
+    border: 1px solid;
+    height: 50px;
+    background-color: #a6f1cc;
+}
+
+.days {
+    width: 200px;
+    text-align: center;
+    background-color: #a6f1cc;
+}
+
+td:hover {
+    background-color: #E0E0E0;
+}
+
+th:hover {
+    background-color: #81eeb7;
+}
+
+.days:hover {
+    background-color: #81eeb7;
+}
