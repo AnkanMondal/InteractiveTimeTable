@@ -1,4 +1,4 @@
-var userDb = require('./model')
+var userDb = require('../model/model')
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -11,13 +11,15 @@ exports.create = (req, res) => {
     const user = new userDb({
         dept_name: req.body.dept_name,
         course_name: req.body.course_name,
-        t_name: req.body.t_name
+        t_name: req.body.t_name,
+        sem: req.body.sem
     })
     // save data in mongodb
     user
         .save(user)
         .then(data => {
-            res.send(data)
+            // res.send(data)
+            res.redirect('/')
         })
         .catch(err => {
             res.status(500)({ message: err.message || 'Something went wrong while saving data' })

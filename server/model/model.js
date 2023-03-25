@@ -13,6 +13,10 @@ var schema = new mongoose.Schema({
     t_name: {
         type: 'string',
         required: true
+    },
+    sem: {
+        type: 'string',
+        required: true
     }
 })
 

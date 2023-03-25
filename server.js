@@ -1,22 +1,30 @@
-const port = process.env.PORT || 3000
 const express = require('express')
+const dotenv = require('dotenv')
+const morgan = require('morgan')
+const bodyParser = require('body-parser')
+const connectDb = require('./server/database/connection')
 const app = express()
-const connectDB = require('./connection')
 
-app.use('/public', express.static('public'))
+dotenv.config({ path: 'config.env' })
 
+const PORT = process.env.PORT || 8080
+
+// log requests
+app.use(morgan('tiny'))
+
+// mongodb connection
+connectDb()
+
+// parse request to body-parser
+app.use(bodyParser.urlencoded({ extended: true }))
+
+// set view engine
 app.set("view engine", "ejs")
 
-app.use(express.json())
+// load assets
+app.use('/public', express.static('public'))
 
-app.use(express.urlencoded({
-    extended: true
-}))
+// load routers
+app.use('/', require('./server/routes/router'))
 
-app.use('/', require('./router'))
-
-connectDB()
-
-app.listen(port, () => {
-    console.log('Listening on port ' + port)
-})
+app.listen(PORT, () => { console.log(`Server is running on http://localhost:${PORT}`) })

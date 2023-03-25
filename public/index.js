@@ -1,6 +1,6 @@
-function populate(department_select, semester_select) {
-    var dSel = document.getElementById("department_select")
-    var sSel = document.getElementById("semester_select")
+function populate(dept_name, sem) {
+    var dSel = document.getElementById("dept_name")
+    var sSel = document.getElementById("sem")
     var sem = ""
     sSel.innerHTML = ""
     if (dSel.value == "mca") {
@@ -23,9 +23,11 @@ function populate(department_select, semester_select) {
     }
 }
 
-function displayRes(semester_select, department_select) {
-    var dSel = document.getElementById("department_select")
-    var sSel = document.getElementById("semester_select")
+res.render('index', { message: "Hello" })
+
+function displayRes(sem, dept_name) {
+    var dSel = document.getElementById("dept_name")
+    var sSel = document.getElementById("sem")
     var resultDiv = document.getElementById("result")
     resultDiv.innerHTML = "You have selected " + dSel.value + " department " + sSel.value
     /*
