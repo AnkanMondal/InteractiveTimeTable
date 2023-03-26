@@ -1,7 +1,6 @@
 function populate(dept_name, sem) {
     var dSel = document.getElementById("dept_name")
     var sSel = document.getElementById("sem")
-    var sem = ""
     sSel.innerHTML = ""
     if (dSel.value == "mca") {
         var optionArray = ['sem1|Sem 1', 'sem2|Sem 2', 'sem3|Sem 3', 'sem4|Sem 4', 'sem5|Sem 5', 'sem6|Sem 6']
@@ -23,10 +22,7 @@ function populate(dept_name, sem) {
     }
 }
 
-res.render('index', { message: "Hello" })
-
-function displayRes(sem, dept_name) {
-    var dSel = document.getElementById("dept_name")
+function displayRes(sem, dept_name) {    
     var sSel = document.getElementById("sem")
     var resultDiv = document.getElementById("result")
     resultDiv.innerHTML = "You have selected " + dSel.value + " department " + sSel.value

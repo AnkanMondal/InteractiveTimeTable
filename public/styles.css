@@ -57,3 +57,7 @@ th:hover {
 .days:hover {
     background-color: #81eeb7;
 }
+
+.form_assign_faculty {
+    margin-top: 100px;
+}

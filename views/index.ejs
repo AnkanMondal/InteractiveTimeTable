@@ -12,7 +12,7 @@
         <script src="public/index.js"></script>
 
     </head>
-    
+
     <body>
         <!-- scripts -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -36,25 +36,23 @@
             </div>
         </nav>
 
-        
+        <%- include('include/form') %>
 
         <!-- dropdowns -->
-        <form action="/api/dept_db" method="POST" class="row g-3" id="add_details">
+        <!-- <form action="/api/dept_db" method="POST" class="row g-3" id="add_details">
             <div class="col-md-6">
                 <label name="dropdown_department" class="form-label">Department</label>
-                <select name="dept_name" id="dept_name" class="form-control"
-                    onchange="populate(this.id, 'sem')">
+                <select id="dept_name" class="form-control" onchange="populate(this.id, 'sem')">
                     <option>Department</option>
-                    <option value="mca">MCA</option>
-                    <option value="mTech">M.Tech.</option>
-                    <option value="bTech">B.Tech.</option>
-                    <option value="mSc">M.Sc.</option>
+                    <option value="mca" name="dept_name">MCA</option>
+                    <option value="mTech" name="dept_name">M.Tech.</option>
+                    <option value="bTech" name="dept_name">B.Tech.</option>
+                    <option value="mSc" name="dept_name">M.Sc.</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label name="dropdown_semester">Semester</label>
-                <select name="sem" id="sem" class="form-control"
-                    onchange="displayRes(this.id, 'dept_name')">
+                <select id="sem" class="form-control" onchange="displayRes(this.id, 'dept_name')">
                     <option>Select Semester</option>
                 </select>
             </div>
@@ -75,7 +73,7 @@
             <div>
                 <button type="submit" class="btn btn-primary" form="form1" value="Submit">Submit</button>
             </div>
-        </form>
+        </form> -->
         <br>
         <br>
         <% for(var i=0; i < users.length; i++) { %>

@@ -1,3 +1,74 @@
-<main id="assign_faculty_site">
-    <h1>The assign faculty page is working</h1>
-</main>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Assign Faculty</title>
+
+    <!-- links -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/assign_faculty_styles.css">
+
+    <!-- scripts -->
+    <script src="public/index_assign_faculty.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1><b>Assign Faculty</b></h1>
+        <br>
+        <br>
+        <form>
+            <div class="form-group">
+                <label for="inputText">Teacher's Name</label>
+                <input type="text" class="form-control" id="inputText" name="assign_t_name" placeholder="Your Name">
+            </div>
+            <div class="form-group">
+                <label for="dropdown1">Department</label>
+                <select class="form-control" id="dropdown1" name="assign_dept" onchange="populateSem()">
+                    <option>Choose Department</option>
+                    <option value="MCA">MCA</option>
+                    <option value="B.Tech.">B.Tech.</option>
+                    <option value="M.Tech.">M.Tech.</option>
+                    <option value="M.Sc.">M.Sc.</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dropdown2">Semester</label>
+                <select class="form-control" id="dropdown2" name="assign_sem" onchange="populateCourse()">
+                    <option>Choose Semester</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dropdown3">Course</label>
+                <select class="form-control" id="dropdown3" name="assign_course">
+                    <option>Choose Course</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dropdown4">Timing</label>
+                <select class="form-control" id="dropdown4" name="assign_timing">
+                    <option>Choose Timing</option>
+                    <option value="08:00 - 09:00">09:00 - 10:00</option>
+                    <option value="10:00 - 11:00">10:00 - 11:00</option>
+                    <option value="01:00 - 02:00">01:00 - 02:00</option>
+                    <option value="02:00 - 03:00">02:00 - 03:00</option>
+                    <option value="03:00 - 04:00">03:00 - 04:00</option>
+                    <option value="04:00 - 05:00">04:00 - 05:00</option>
+                    <option value="05:00 - 06:00">05:00 - 06:00</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dropdown5">Room</label>
+                <select class="form-control" id="dropdown5" name="assign_room">
+                    <option>Choose Room</option>
+                    <option value="Room 1">Room 1</option>
+                    <option value="Room 2">Room 2</option>
+                    <option value="Room 3">Room 3</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>        
+    </div>
+</body>
+
+</html>

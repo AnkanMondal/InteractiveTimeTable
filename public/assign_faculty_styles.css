@@ -1,0 +1,25 @@
+body {
+    margin: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
+    width: 100%;
+}
+
+select {
+    width: 50%;
+}

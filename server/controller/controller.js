@@ -22,7 +22,7 @@ exports.create = (req, res) => {
             res.redirect('/')
         })
         .catch(err => {
-            res.status(500)({ message: err.message || 'Something went wrong while saving data' })
+            res.status(500).send({ message: err.message || 'Something went wrong while saving data' })
         })
 }
 
