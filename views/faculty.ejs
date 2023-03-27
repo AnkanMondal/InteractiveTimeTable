@@ -6,10 +6,10 @@
 
     <!-- links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/assign_faculty_styles.css">
+    <link rel="stylesheet" href="public/faculty_styles.css">
 
     <!-- scripts -->
-    <script src="public/index_assign_faculty.js"></script>
+    <script src="public/index_faculty.js"></script>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
         <h1><b>Assign Faculty</b></h1>
         <br>
         <br>
-        <form>
+        <form action="/api/faculty" method="POST" id="faculty">
             <div class="form-group">
                 <label for="inputText">Teacher's Name</label>
                 <input type="text" class="form-control" id="inputText" name="t_name" placeholder="Your Name">
@@ -67,7 +67,7 @@
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
-        </form>        
+        </form>
     </div>
 </body>
 
