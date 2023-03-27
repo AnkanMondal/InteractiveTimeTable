@@ -1,4 +1,4 @@
-var userDb = require('../model/model')
+var facultyDb = require('../model/model_faculty')
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -8,18 +8,20 @@ exports.create = (req, res) => {
         return
     }
     // new user
-    const user = new userDb({
-        dept_name: req.body.dept_name,
-        course_name: req.body.course_name,
+    const user = new facultyDb({
         t_name: req.body.t_name,
-        sem: req.body.sem
+        dept: req.body.dept,
+        sem: req.body.sem,
+        course: req.body.course,
+        timing: req.body.timing,
+        room: req.body.room
     })
     // save data in mongodb
     user
         .save(user)
         .then(data => {
             // res.send(data)
-            res.redirect('/')
+            res.redirect('/faculty')
         })
         .catch(err => {
             res.status(500).send({ message: err.message || 'Something went wrong while saving data' })
@@ -31,7 +33,7 @@ exports.find = (req, res) => {
     // if id is provided then return a single user else return multiple users
     if (req.query.id) {
         const id = req.query.id
-        userDb.findById(id)
+        facultyDb.findById(id)
             .then(data => {
                 if (!data) {
                     res.status(404).send({ message: "Not found user with id " + id })
@@ -44,7 +46,7 @@ exports.find = (req, res) => {
             })
 
     } else {
-        userDb.find()
+        facultyDb.find()
             .then(user => {
                 res.send(user)
             })

@@ -1,25 +1,32 @@
 const mongoose = require('mongoose')
 
-// example schema to test if mongodb is working properly
 var schema = new mongoose.Schema({
-    dept_name: {
-        type: 'string',
-        required: true
-    },
-    course_name: {
-        type: 'string',
-        required: true
-    },
     t_name: {
+        type: 'string',
+        required: true
+    },
+    dept: {
         type: 'string',
         required: true
     },
     sem: {
         type: 'string',
         required: true
+    },
+    course: {
+        type: 'string',
+        required: true
+    },
+    timing: {
+        type: 'string',
+        required: true
+    },
+    room: {
+        type: 'string',
+        required: true
     }
 })
 
-const userDb = mongoose.model('dept_db', schema)
+const facultyDb = mongoose.model('faculty', schema)
 
-module.exports = userDb
+module.exports = facultyDb

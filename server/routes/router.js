@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router()
-const controller = require('../controller/controller')
+const faculty_controller = require('../controller/controller_faculty')
 const services = require('../services/render')
 
 /**
@@ -13,10 +13,10 @@ route.get('/', services.homeRoutes)
  *  @description Assign Faculty
  *  @method GET /assign_faculty
  */
-route.get('/assign_faculty', services.assignFaculty)
+route.get('/faculty', services.assignFaculty)
 
 // API
-route.post('/api/dept_db', controller.create)
-route.get('/api/dept_db', controller.find)
+route.post('/api/faculty', faculty_controller.create)
+route.get('/api/faculty', faculty_controller.find)
 
 module.exports = route

@@ -20,11 +20,11 @@
         <form>
             <div class="form-group">
                 <label for="inputText">Teacher's Name</label>
-                <input type="text" class="form-control" id="inputText" name="assign_t_name" placeholder="Your Name">
+                <input type="text" class="form-control" id="inputText" name="t_name" placeholder="Your Name">
             </div>
             <div class="form-group">
                 <label for="dropdown1">Department</label>
-                <select class="form-control" id="dropdown1" name="assign_dept" onchange="populateSem()">
+                <select class="form-control" id="dropdown1" name="dept" onchange="populateSem()">
                     <option>Choose Department</option>
                     <option value="MCA">MCA</option>
                     <option value="B.Tech.">B.Tech.</option>
@@ -34,19 +34,19 @@
             </div>
             <div class="form-group">
                 <label for="dropdown2">Semester</label>
-                <select class="form-control" id="dropdown2" name="assign_sem" onchange="populateCourse()">
+                <select class="form-control" id="dropdown2" name="sem" onchange="populateCourse()">
                     <option>Choose Semester</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="dropdown3">Course</label>
-                <select class="form-control" id="dropdown3" name="assign_course">
+                <select class="form-control" id="dropdown3" name="course">
                     <option>Choose Course</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="dropdown4">Timing</label>
-                <select class="form-control" id="dropdown4" name="assign_timing">
+                <select class="form-control" id="dropdown4" name="timing">
                     <option>Choose Timing</option>
                     <option value="08:00 - 09:00">09:00 - 10:00</option>
                     <option value="10:00 - 11:00">10:00 - 11:00</option>
@@ -59,7 +59,7 @@
             </div>
             <div class="form-group">
                 <label for="dropdown5">Room</label>
-                <select class="form-control" id="dropdown5" name="assign_room">
+                <select class="form-control" id="dropdown5" name="room">
                     <option>Choose Room</option>
                     <option value="Room 1">Room 1</option>
                     <option value="Room 2">Room 2</option>
