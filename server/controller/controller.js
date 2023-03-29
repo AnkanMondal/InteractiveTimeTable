@@ -1,4 +1,6 @@
-var facultyDb = require('../model/model_faculty')
+var facultyModel = require('../model/faculty_schema')
+var departmentModel = require('../model/department_schema')
+var teacherModel = require('../model/teacher_schema')
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -8,7 +10,7 @@ exports.create = (req, res) => {
         return
     }
     // new user
-    const user = new facultyDb({
+    const user = new facultyModel({
         t_name: req.body.t_name,
         dept: req.body.dept,
         sem: req.body.sem,
@@ -33,7 +35,7 @@ exports.find = (req, res) => {
     // if id is provided then return a single user else return multiple users
     if (req.query.id) {
         const id = req.query.id
-        facultyDb.findById(id)
+        facultyModel.findById(id)
             .then(data => {
                 if (!data) {
                     res.status(404).send({ message: "Not found user with id " + id })
@@ -46,7 +48,7 @@ exports.find = (req, res) => {
             })
 
     } else {
-        facultyDb.find()
+        facultyModel.find()
             .then(user => {
                 res.send(user)
             })
@@ -55,3 +57,26 @@ exports.find = (req, res) => {
             })
     }
 }
+
+exports.getDepartments = async (req, res) => {
+    try {
+        const departments = await departmentModel.find({})
+        // res.status(200).send({ sucess: true, message: 'Department data', data: departments })
+        return departments
+    } catch (err) {
+        res.status(400)({ sucess: false, message: err.message })
+    }
+}
+
+exports.getTeachers = async (req, res) => {
+    try {
+        const teachers = await teacherModel.find({ dept: req.params.dept })
+        res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+    } catch (err) {
+        res.status(400)({ sucess: false, message: err.message })
+    }
+}
+
+exports.departments = []
+
+module.exports.departments = exports.departments

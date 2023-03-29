@@ -27,6 +27,6 @@ var schema = new mongoose.Schema({
     }
 })
 
-const facultyDb = mongoose.model('faculty', schema)
+const db = mongoose.model('faculty', schema)
 
-module.exports = facultyDb
+module.exports = db

@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router()
-const faculty_controller = require('../controller/controller_faculty')
+const controller = require('../controller/controller')
 const services = require('../services/render')
 
 /**
@@ -16,7 +16,9 @@ route.get('/', services.homeRoutes)
 route.get('/faculty', services.assignFaculty)
 
 // API
-route.post('/api/faculty', faculty_controller.create)
-route.get('/api/faculty', faculty_controller.find)
+route.post('/api/faculty', controller.create)
+route.get('/api/faculty', controller.find)
+route.get('/api/department', controller.getDepartments)
+route.get('/api/teacher', controller.getTeachers)
 
 module.exports = route

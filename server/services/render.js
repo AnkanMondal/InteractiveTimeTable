@@ -1,4 +1,5 @@
 const axios = require('axios')
+const controller = require('../controller/controller')
 
 exports.homeRoutes = (req, res) => {
     // make a get request to /api/debt_db
@@ -11,6 +12,8 @@ exports.homeRoutes = (req, res) => {
         })
 }
 
-exports.assignFaculty = (req, res) => {
-    res.render('faculty')
+exports.assignFaculty = async (req, res) => {
+    const departments = await controller.getDepartments(req, res)
+    controller.departments = departments
+    res.render('faculty', { departments })
 }
