@@ -18,17 +18,15 @@
         <br>
         <br>
         <form action="/api/faculty" method="POST" id="faculty">
-            <ul>
-                <% for (var i=0; i < departments.length; i++) { %>
-                    <li>
-                        <%= departments[i].dept %>
-                    </li>
-                    <% } %>
-            </ul>
             <div class="form-group">
                 <label for="dropdown1">Department</label>
                 <select class="form-control" id="dropdown1" name="dept">
                     <option>Choose Department</option>
+                    <% for (var i=0; i < departments.length; i++) { %>
+                        <option>
+                            <%= departments[i].dept %>
+                        </option>
+                        <% } %>
                 </select>
             </div>
             <div class="form-group">

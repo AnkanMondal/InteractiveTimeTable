@@ -13,7 +13,7 @@ exports.homeRoutes = (req, res) => {
 }
 
 exports.assignFaculty = async (req, res) => {
+    // pass departments to faculty.ejs
     const departments = await controller.getDepartments(req, res)
-    controller.departments = departments
     res.render('faculty', { departments })
 }

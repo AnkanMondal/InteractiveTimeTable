@@ -76,7 +76,3 @@ exports.getTeachers = async (req, res) => {
         res.status(400)({ sucess: false, message: err.message })
     }
 }
-
-exports.departments = []
-
-module.exports.departments = exports.departments
