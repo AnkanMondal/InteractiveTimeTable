@@ -1,6 +1,8 @@
 var facultyModel = require('../model/faculty_schema')
 var departmentModel = require('../model/department_schema')
 var teacherModel = require('../model/teacher_schema')
+const querystring = require('querystring')
+const axios = require('axios')
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -46,14 +48,13 @@ exports.find = (req, res) => {
             .catch(err => {
                 res.status(500).send({ message: "Error retrieving user with id " + id })
             })
-
     } else {
         facultyModel.find()
             .then(user => {
                 res.send(user)
             })
             .catch(err => {
-                res.status(500)({ message: err.message || 'Something went wrong while retrieving data' })
+                res.status(500).send({ message: err.message || 'Something went wrong while retrieving data' })
             })
     }
 }
@@ -62,17 +63,61 @@ exports.getDepartments = async (req, res) => {
     try {
         const departments = await departmentModel.find({})
         // res.status(200).send({ sucess: true, message: 'Department data', data: departments })
+        // console.log(`Selected teachers`, typeof departments)
         return departments
     } catch (err) {
-        res.status(400)({ sucess: false, message: err.message })
+        res.status(400).send({ sucess: false, message: err.message })
     }
 }
 
 exports.getTeachers = async (req, res) => {
-    try {
-        const teachers = await teacherModel.find({ dept: req.params.dept })
-        res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
-    } catch (err) {
-        res.status(400)({ sucess: false, message: err.message })
-    }
+    // try {
+    //     const selectedDept = req.query.dept
+    // let teachers = []
+    // try {
+    //     const response = await axios.get(`http://localhost:3000/api/teacher?dept=${selectedDept}`);
+    //     teachers = response.data;
+    // } catch (err) {
+    //     console.error(err);
+    //     res.status(500).send('Error fetching teachers');
+    //     return;
+    // }
+    // teacherModel.find(selectedDept)
+    // .then(data => {
+    //     if (!data) {
+    //         res.status(404).send({ message: "Not found user with the selected department " + selectedDept })
+    //     } else {
+    //         res.send(data)
+    //     }
+    // })
+    // .catch(err => {
+    //     res.status(500).send({ message: "Error retrieving user with id " + selectedDept })
+    // })
+    //     const response = fetch(`http://localhost:3000/api/teacher?dept=${selectedDept}`)
+    // const data = response.json();
+    // console.log(data)
+    // console.log('Selected department:', selectedDept)
+    // const teachers = await teacherModel.find({ dept: selectedDept })
+    // console.log(`Selected teachers`,  teachers)
+    // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+    // return teachers
+    // } catch (err) {
+    //     res.status(400).send({ sucess: false, message: err.message })
+    // }
+    const selectedDept = req.query.dept
+    // console.log(selectedDept)
+    teacherModel.find({ dept: selectedDept })
+        .then(data => {
+            console.log(data)
+            if (!data) {
+                res.status(404).send({ message: "Not found user with department " + selectedDept })
+            } else {        
+                // console.log(`momo`)   
+                // console.log(data)
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Error retrieving user with department " + selectedDept })
+        })
 }

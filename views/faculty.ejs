@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="public/faculty_styles.css">
 
     <!-- scripts -->
-    <!-- <script src="public/index_faculty.js"></script> -->
+    <script src="/public/index.js"></script>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <form action="/api/faculty" method="POST" id="faculty">
             <div class="form-group">
                 <label for="dropdown1">Department</label>
-                <select class="form-control" id="dropdown1" name="dept">
+                <select class="form-control" id="dropdown1" name="dept" onchange="deptSelect()">
                     <option>Choose Department</option>
                     <% for (var i=0; i < departments.length; i++) { %>
                         <option>
@@ -33,6 +33,11 @@
                 <label for="dropdown2">Teacher's Name</label>
                 <select class="form-control" id="dropdown2" name="t_name">
                     <option>Choose Teacher</option>
+                    <% for (var i=0; i < teachers.length; i++) { %>
+                        <option>
+                            <%= teachers[i].t_name %>
+                        </option>
+                        <% } %>
                 </select>
             </div>
             <div class="form-group">
