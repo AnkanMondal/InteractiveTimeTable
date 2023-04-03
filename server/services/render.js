@@ -12,10 +12,10 @@ exports.homeRoutes = (req, res) => {
         })
 }
 
-exports.assignFaculty = async (req, res) => {
+exports.assignFaculty = async (req, res) => {    
     const departments = await controller.getDepartments(req, res)
     const selectedDept = await controller.selectedDepartment(req, res)
-    console.log('Selected department: ' + selectedDept)
+    console.log('Selected department: ' + selectedDept.value)
     const teachers = []
     res.render('faculty', {
         departments: departments,

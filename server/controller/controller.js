@@ -1,13 +1,6 @@
 var facultyModel = require('../model/faculty_schema')
 var departmentModel = require('../model/department_schema')
 var teacherModel = require('../model/teacher_schema')
-const bodyParser = require('body-parser')
-const express = require('express')
-const app = express()
-
-app.use(bodyParser.json())
-
-app.use(bodyParser.urlencoded({ extended: true }))
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -76,8 +69,11 @@ exports.getDepartments = async (req, res) => {
 }
 
 exports.selectedDepartment = async (req, res) => {
-    const selectedDept = req.query.dept
-    // console.log('Selected department: ' + selectedDept)
+    // const selectedDept = req.query.dept
+    const selectedDept = Object.assign({}, req.query.dept)
+    // const str = selectedDept.value
+    // const selectedDept = await teacherModel.find({})
+    // console.log('Selected department: ' + str)
     return selectedDept
 }
 
