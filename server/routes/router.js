@@ -19,6 +19,7 @@ route.get('/faculty', services.assignFaculty)
 route.post('/api/faculty', controller.create)
 route.get('/api/faculty', controller.find)
 route.get('/api/department', controller.getDepartments)
+route.get('/api/teacher', controller.selectedDepartment)
 route.get('/api/teacher', controller.getTeachers)
 
 module.exports = route

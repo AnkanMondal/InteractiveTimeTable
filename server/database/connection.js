@@ -7,7 +7,8 @@ const connectDB = async () => {
             useUnifiedTopology: true,
         })
         const db = mongoose.connection
-        console.log('MongoDB connection established' + ' ' + con.connection.host)
+        console.log('MongoDB connection established')
+        console.log('Host name: ' + con.connection.host)
         console.log('Database name: ' + db.db.databaseName)
     } catch (err) {
         console.log(err)
