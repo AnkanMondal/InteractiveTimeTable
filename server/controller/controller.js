@@ -1,6 +1,8 @@
 var facultyModel = require('../model/faculty_schema')
 var departmentModel = require('../model/department_schema')
 var teacherModel = require('../model/teacher_schema')
+const semesterModel = require('../model/semester_schema')
+const courseModel = require('../model/course_schema.js')
 const axios = require('axios')
 const index = require('../../public/js/index')
 
@@ -70,14 +72,47 @@ async function getDepartments() {
     }
 }
 
-async function getTeachers(selectedDept) {
+async function getTeachers() {
     try {
-        const teachers = await teacherModel.find({ dept: selectedDept })
+        const teachers = await teacherModel.find({})
         // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
         // console.log(`Teachers`, teachers)
         return teachers
     } catch (err) {
         console.log("Error while fetching teachers' data")
+    }
+}
+
+async function getTeachers() {
+    try {
+        const teachers = await teacherModel.find({})
+        // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+        // console.log(`Teachers`, teachers)
+        return teachers
+    } catch (err) {
+        console.log("Error while fetching teachers' data")
+    }
+}
+
+async function getSemesters() {
+    try {
+        const semesters = await semesterModel.find({})
+        // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+        // console.log(`Teachers`, teachers)
+        return semesters
+    } catch (err) {
+        console.log("Error while fetching semester data")
+    }
+}
+
+async function getCourses() {
+    try {
+        const courses = await courseModel.find({})
+        // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+        // console.log(`Teachers`, teachers)
+        return courses
+    } catch (err) {
+        console.log("Error while fetching course data")
     }
 }
 
@@ -92,17 +127,30 @@ exports.homeRoutes = (req, res) => {
         })
 }
 
+// exports.assignFaculty = async (req, res) => {
+//     const departments = await getDepartments()
+//     const selectedDept = req.query.dept || departments[0].dept
+//     // console.log('Selected department: ' + selectedDept)
+//     const renderTeacher = async (dept) => {
+//         const teachers = await getTeachers(dept)
+//         // console.log(teachers)
+//         res.render('faculty', {
+//             departments: departments,
+//             teachers: teachers
+//         })
+//     }
+//     await renderTeacher(selectedDept)
+// }
+
 exports.assignFaculty = async (req, res) => {
     const departments = await getDepartments()
-    const selectedDept = req.query.dept || departments[0].dept
-    // console.log('Selected department: ' + selectedDept)
-    const renderTeacher = async (dept) => {
-        const teachers = await getTeachers(dept)
-        console.log(teachers)
-        res.render('faculty', {
-            departments: departments,
-            teachers: teachers
-        })
-    }
-    await renderTeacher(selectedDept)
+    const teachers = await getTeachers()
+    const semesters = await getSemesters()
+    const courses = await getCourses()
+    res.render('faculty', {
+        departments: departments,
+        teachers: teachers,
+        semesters: semesters,
+        courses: courses
+    })
 }

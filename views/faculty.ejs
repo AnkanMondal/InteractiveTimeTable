@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="dropdown2">Teacher's Name</label>
                 <select class="form-control" id="dropdown2" name="t_name">
-                    <option>Choose Teacher</option>
+                    <option>Choose Teachers</option>
                     <% for (var i=0; i < teachers.length; i++) { %>
                         <option>
                             <%= teachers[i].t_name %>
@@ -41,12 +41,24 @@
                 <label for="dropdown3">Semester</label>
                 <select class="form-control" id="dropdown3" name="sem">
                     <option>Choose Semester</option>
+                    <% for (var i=0; i < semesters.length; i++) { %>
+                        <option>
+                            <%= semesters[i].sem %>
+                        </option>
+                        <% } %>
+                </select>
                 </select>
             </div>
             <div class="form-group">
                 <label for="dropdown4">Course</label>
                 <select class="form-control" id="dropdown4" name="course">
                     <option>Choose Course</option>
+                    <% for (var i=0; i < courses.length; i++) { %>
+                        <option>
+                            <%= courses[i].course_name %>
+                        </option>
+                        <% } %>
+                </select>
                 </select>
             </div>
             <div class="form-group">
