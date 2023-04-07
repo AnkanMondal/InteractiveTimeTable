@@ -1,6 +1,8 @@
 var facultyModel = require('../model/faculty_schema')
 var departmentModel = require('../model/department_schema')
 var teacherModel = require('../model/teacher_schema')
+const axios = require('axios')
+const index = require('../../public/index')
 
 // create and save a new user
 exports.create = (req, res) => {
@@ -57,7 +59,7 @@ exports.find = (req, res) => {
     }
 }
 
-exports.getDepartments = async (req, res) => {
+async function getDepartments() {
     try {
         const departments = await departmentModel.find({})
         // res.status(200).send({ sucess: true, message: 'Department data', data: departments })
@@ -68,18 +70,39 @@ exports.getDepartments = async (req, res) => {
     }
 }
 
-exports.selectedDepartment = async (req, res) => {
-    // const selectedDept = req.query.dept
-    const selectedDept = Object.assign({}, req.query.dept)
-    // const str = selectedDept.value
-    // const selectedDept = await teacherModel.find({})
-    // console.log('Selected department: ' + str)
-    return selectedDept
+async function getTeachers(selectedDept) {
+    try {
+        const teachers = await teacherModel.find({ dept: selectedDept })
+        // res.status(200).send({ sucess: true, message: 'Teacher data', data: teachers })
+        // console.log(`Teachers`, teachers)
+        return teachers
+    } catch (err) {
+        console.log("Error while fetching teachers' data")
+    }
 }
 
-exports.getTeachers = async (req, res) => {
-    try {
-    } catch (err) {
-        res.status(400).send({ sucess: false, message: "Error while fetching teachers' data" })
+exports.homeRoutes = (req, res) => {
+    // make a get request to /api/faculty
+    axios.get('http://localhost:3000/api/faculty')
+        .then(function (response) {
+            res.render('index', { users: response.data })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+exports.assignFaculty = async (req, res) => {
+    const departments = await getDepartments()
+    const selectedDept = req.query.dept || departments[0].dept
+    // console.log('Selected department: ' + selectedDept)
+    const renderTeacher = async (dept) => {
+        const teachers = await getTeachers(dept)
+        console.log(teachers)
+        res.render('faculty', {
+            departments: departments,
+            teachers: teachers
+        })
     }
+    await renderTeacher(selectedDept)
 }
