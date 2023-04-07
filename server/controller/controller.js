@@ -2,7 +2,7 @@ var facultyModel = require('../model/faculty_schema')
 var departmentModel = require('../model/department_schema')
 var teacherModel = require('../model/teacher_schema')
 const axios = require('axios')
-const index = require('../../public/index')
+const index = require('../../public/js/index')
 
 // create and save a new user
 exports.create = (req, res) => {

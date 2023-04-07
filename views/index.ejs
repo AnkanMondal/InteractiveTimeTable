@@ -4,13 +4,9 @@
         <title>Interactive Time Table</title>
 
         <!-- links -->
-        <link rel="stylesheet" href="public/styles.css">
+        <link rel="stylesheet" href="public/css/styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <!-- scripts -->
-        <script src="public/index.js"></script>
-
     </head>
 
     <body>
@@ -38,8 +34,8 @@
 
         <%- include('include/form') %>
 
-        <!-- dropdowns -->
-        <!-- <form action="/api/dept_db" method="POST" class="row g-3" id="add_details">
+            <!-- dropdowns -->
+            <!-- <form action="/api/dept_db" method="POST" class="row g-3" id="add_details">
             <div class="col-md-6">
                 <label name="dropdown_department" class="form-label">Department</label>
                 <select id="dept_name" class="form-control" onchange="populate(this.id, 'sem')">
@@ -74,20 +70,20 @@
                 <button type="submit" class="btn btn-primary" form="form1" value="Submit">Submit</button>
             </div>
         </form> -->
-        <br>
-        <br>
-        <% for(var i=0; i < users.length; i++) { %>
-            <label>Department name: <%= users[i].dept_name %></label>
-            <label>Course name: <%= users[i].course_name %></label>
-            <label>Teacher's name: <%= users[i].t_name %></label>
-            <label>Semester: <%= users[i].sem %></label>
             <br>
-            <% } %>
+            <br>
+            <% for(var i=0; i < users.length; i++) { %>
+                <label>Department name: <%= users[i].dept_name %></label>
+                <label>Course name: <%= users[i].course_name %></label>
+                <label>Teacher's name: <%= users[i].t_name %></label>
+                <label>Semester: <%= users[i].sem %></label>
                 <br>
-                <br>
-                <label name="test_result" id="test_result"></label>
-                </div>
-                <!-- time-table -->
-                <%- include('include/time_table') %>
+                <% } %>
+                    <br>
+                    <br>
+                    <label name="test_result" id="test_result"></label>
+                    </div>
+                    <!-- time-table -->
+                    <%- include('include/time_table') %>
     </body>
 </main>
