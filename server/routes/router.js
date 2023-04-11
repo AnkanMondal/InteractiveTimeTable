@@ -10,9 +10,21 @@ route.get('/', controller.homeRoutes)
 
 /**
  *  @description Assign Faculty
- *  @method GET /assign_faculty
+ *  @method GET /faculty
  */
 route.get('/faculty', controller.assignFaculty)
+
+/**
+ *  @description Display Time-Table
+ *  @method GET /display
+ */
+route.get('/display', controller.displayTimeTable)
+
+/**
+ *  @description About Project
+ *  @method GET /about
+ */
+route.get('/about', controller.about)
 
 // API
 route.post('/api/faculty', controller.create)

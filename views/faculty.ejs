@@ -6,7 +6,7 @@
 
     <!-- links -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="public/css/faculty_styles.css">
+    <link rel="stylesheet" href="public/css/faculty_styles.css">    
 </head>
 
 <body>
@@ -14,79 +14,7 @@
         <h1><b>Assign Faculty</b></h1>
         <br>
         <br>
-        <form action="/api/faculty" method="POST" id="faculty">
-            <div class="form-group">
-                <label for="dropdown1">Department</label>
-                <select class="form-control" id="dropdown1" name="dept" onchange="deptSelect()">
-                    <option>Choose Department</option>
-                    <% for (var i=0; i < departments.length; i++) { %>
-                        <option>
-                            <%= departments[i].dept %>
-                        </option>
-                        <% } %>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dropdown2">Teacher's Name</label>
-                <select class="form-control" id="dropdown2" name="t_name">
-                    <option>Choose Teachers</option>
-                    <% for (var i=0; i < teachers.length; i++) { %>
-                        <option>
-                            <%= teachers[i].t_name %>
-                        </option>
-                        <% } %>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dropdown3">Semester</label>
-                <select class="form-control" id="dropdown3" name="sem">
-                    <option>Choose Semester</option>
-                    <% for (var i=0; i < semesters.length; i++) { %>
-                        <option>
-                            <%= semesters[i].sem %>
-                        </option>
-                        <% } %>
-                </select>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dropdown4">Course</label>
-                <select class="form-control" id="dropdown4" name="course">
-                    <option>Choose Course</option>
-                    <% for (var i=0; i < courses.length; i++) { %>
-                        <option>
-                            <%= courses[i].course_name %>
-                        </option>
-                        <% } %>
-                </select>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dropdown5">Timing</label>
-                <select class="form-control" id="dropdown5" name="timing">
-                    <option>Choose Timing</option>
-                    <option value="08:00 - 09:00">09:00 - 10:00</option>
-                    <option value="10:00 - 11:00">10:00 - 11:00</option>
-                    <option value="01:00 - 02:00">01:00 - 02:00</option>
-                    <option value="02:00 - 03:00">02:00 - 03:00</option>
-                    <option value="03:00 - 04:00">03:00 - 04:00</option>
-                    <option value="04:00 - 05:00">04:00 - 05:00</option>
-                    <option value="05:00 - 06:00">05:00 - 06:00</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dropdown6">Room</label>
-                <select class="form-control" id="dropdown6" name="room">
-                    <option>Choose Room</option>
-                    <option value="Room 1">Room 1</option>
-                    <option value="Room 2">Room 2</option>
-                    <option value="Room 3">Room 3</option>
-                </select>
-            </div>
-            <br>
-            <br>
-            <button type="submit" class="btn btn-primary">Save</button>
-        </form>
+        <%- include('include/form') %>
     </div>
 </body>
 
