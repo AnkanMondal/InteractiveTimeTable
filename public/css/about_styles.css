@@ -31,14 +31,6 @@ nav a:hover {
     transition: color 0.5s;
 }
 
-.welcome-container {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    margin-top: 100px;
-    margin-left: 40px;
-}
-
 h1 {
     font-size: 65px;
     font-weight: bold;
@@ -59,39 +51,7 @@ h1 {
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     color: #F5F5F5;
-    margin-top: 0px;
-    margin-left: 40px;
-    width: 620px;
+    margin-left: 100px;
+    margin-right: 100px;
     word-wrap: break-word;
-}
-
-.buttons-container {
-    display: flex;
-    justify-content: right;
-    margin-right: 200px;
-}
-
-.button1,
-.button2 {
-    background-color: #fff;
-    border: none;
-    border-radius: 20px;
-    font-family: 'Montserrat', sans-serif;
-    color: #1C1C1C;
-    font-weight: bold;
-    font-size: 20px;
-    height: 150px;
-    width: 300px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
-.button1 {
-    margin-right: 50px;
-}
-
-.button1:hover,
-.button2:hover {
-    background-color: #dadada;
-    transition: background-color 0.5s;
 }
