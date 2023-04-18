@@ -1,8 +1,9 @@
-var facultyModel = require('../model/faculty_schema')
-var departmentModel = require('../model/department_schema')
-var teacherModel = require('../model/teacher_schema')
+const facultyModel = require('../model/faculty_schema')
+const departmentModel = require('../model/department_schema')
+const teacherModel = require('../model/teacher_schema')
 const semesterModel = require('../model/semester_schema')
 const courseModel = require('../model/course_schema.js')
+const loginModel = require('../model/login_schema.js')
 let message
 
 // create and save a new user
@@ -54,15 +55,15 @@ exports.create = async (req, res) => {
             course: req.body.course,
             timing: req.body.timing,
             room: req.body.room,
-        });
+        })
 
         // save data in mongodb
-        await user.save();
-        res.redirect('/faculty');
+        await user.save()
+        res.redirect('/faculty')
     } catch (err) {
-        res.status(500).send({ message: err.message || 'Something went wrong while saving data' });
+        res.status(500).send({ message: err.message || 'Something went wrong while saving data' })
     }
-};
+}
 
 // retrive user(s)
 exports.find = (req, res) => {
@@ -153,13 +154,11 @@ exports.displayTimeTable = async (req, res) => {
     const departments = await getDepartments()
     const semesters = await getSemesters()
     const { dept, sem, timing } = req.query
-    console.log(dept + ' ' + sem + ' ' + timing)
     const faculty = await facultyModel.find({
         dept: dept,
         sem: sem,
         timing: timing
     })
-    console.log(faculty)
     res.render('display', {
         departments: departments,
         semesters: semesters,
@@ -170,4 +169,17 @@ exports.displayTimeTable = async (req, res) => {
 // render the about page
 exports.about = (req, res) => {
     res.render('about')
+}
+
+// render the login page
+exports.login = async (req, res) => {
+    const { id, pass } = req.query
+    const login = await loginModel.findOne({})
+    const reqId = login.id
+    const reqPass = login.pass
+    if (id == reqId && pass == reqPass) {
+        res.redirect('/faculty')
+    } else {
+        res.render('login')
+    }
 }

@@ -26,6 +26,12 @@ route.get('/display', controller.displayTimeTable)
  */
 route.get('/about', controller.about)
 
+/**
+ *  @description login
+ *  @method GET /login
+ */
+route.get('/login', controller.login)
+
 // api
 route.post('/api/faculty', controller.create)
 route.get('/api/faculty', controller.find)
