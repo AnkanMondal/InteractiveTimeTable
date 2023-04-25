@@ -1,12 +1,12 @@
 const mongoose = require('mongoose')
 
 var schema = new mongoose.Schema({
-    sem: {
+    year: {
         type: 'string',
         required: true
     }
 })
 
-const db = mongoose.model('semester', schema)
+const db = mongoose.model('session', schema)
 
 module.exports = db

@@ -4,7 +4,12 @@ const teacherModel = require('../model/teacher_schema')
 const semesterModel = require('../model/semester_schema')
 const courseModel = require('../model/course_schema.js')
 const loginModel = require('../model/login_schema.js')
-let message
+const branchModel = require('../model/branch_schema.js')
+const sessionModel = require('../model/session_schema.js')
+const roomModel = require('../model/room_schema.js')
+const cellModel = require('../model/cell_schema.js')
+const axios = require('axios')
+let message = ""
 
 // create and save a new user
 exports.create = async (req, res) => {
@@ -17,51 +22,47 @@ exports.create = async (req, res) => {
         }
 
         // check for conflicts
-        const teacherConflict = await facultyModel.findOne({
-            t_name: req.body.t_name,
-            course: req.body.course,
-        })
-
-        const roomConflict = await facultyModel.findOne({
-            room: req.body.room,
-            timing: req.body.timing,
-        })
-
-        if (teacherConflict) {
-            message = "This course is already assigned to a teacher at the given timing"
-            return
-        }
-
-        if (roomConflict) {
-            res.status(400).send({ message: "Another course is already assigned to this room at the given timing" })
-            return
-        }
-
-        const courseConflict = await facultyModel.findOne({
-            course: req.body.course,
-            timing: req.body.timing,
-        })
-
-        if (courseConflict) {
-            res.status(400).send({ message: "This course is already assigned to a teacher at the given timing" })
-            return
-        }
-
-        // create a new user
-        const user = new facultyModel({
-            t_name: req.body.t_name,
+        const tableConflict = await facultyModel.findOne({
             dept: req.body.dept,
+            b_name: req.body.b_name,
             sem: req.body.sem,
-            course: req.body.course,
-            timing: req.body.timing,
-            room: req.body.room,
+            year: req.body.year
         })
 
-        // save data in mongodb
-        await user.save()
+        if (!tableConflict) {
+
+            // create a new user
+            const user = new facultyModel({
+                dept: req.body.dept,
+                b_name: req.body.b_name,
+                sem: req.body.sem,
+                year: req.body.year
+            })
+
+            // save data in mongodb
+            await user.save()
+        }
+
         res.redirect('/faculty')
     } catch (err) {
         res.status(500).send({ message: err.message || 'Something went wrong while saving data' })
+    }
+}
+
+exports.createCell = async (req, res) => {
+    try {
+
+        const user = new cellModel({
+            c_name: req.body.c_name,
+            t_name: req.body.t_name,
+            room_no: req.body.room_no
+        })
+
+        await user.save()
+
+        res.redirect('/faculty')
+    } catch (err) {
+        res.status(500).send({ message: err.message || 'Something went wrong while saving cell data' })
     }
 }
 
@@ -93,13 +94,40 @@ exports.find = (req, res) => {
     }
 }
 
+exports.findCell = (req, res) => {
+
+    // if id is provided then return a single user else return multiple users
+    if (req.query.id) {
+        const id = req.query.id
+        cellModel.findById(id)
+            .then(data => {
+                if (!data) {
+                    res.status(404).send({ message: "Not found user with id " + id })
+                } else {
+                    res.send(data)
+                }
+            })
+            .catch(err => {
+                res.status(500).send({ message: "Error retrieving user with id " + id })
+            })
+    } else {
+        cellModel.find()
+            .then(user => {
+                res.send(user)
+            })
+            .catch(err => {
+                res.status(500).send({ message: err.message || 'Something went wrong while retrieving data' })
+            })
+    }
+}
+
 // get the data
 async function getDepartments() {
     try {
         const departments = await departmentModel.find({})
         return departments
     } catch (err) {
-        res.status(400).send({ sucess: false, message: "Error while fetching departments' data" })
+        console.log("Error while fetching departments' data")
     }
 }
 
@@ -108,7 +136,7 @@ async function getTeachers() {
         const teachers = await teacherModel.find({})
         return teachers
     } catch (err) {
-        console.log("Error while fetching teachers' data")
+        console.log("Error while fetching teacher data")
     }
 }
 
@@ -130,6 +158,33 @@ async function getCourses() {
     }
 }
 
+async function getBranches() {
+    try {
+        const branches = await branchModel.find({})
+        return branches
+    } catch (err) {
+        console.log("Error while fetching branch data")
+    }
+}
+
+async function getSessions() {
+    try {
+        const sessions = await sessionModel.find({})
+        return sessions
+    } catch (err) {
+        console.log("Error while fetching session data")
+    }
+}
+
+async function getRooms() {
+    try {
+        const rooms = await roomModel.find({})
+        return rooms
+    } catch (err) {
+        console.log("Error while fetching room data")
+    }
+}
+
 exports.homeRoutes = (req, res) => {
     res.render('index')
 }
@@ -137,16 +192,29 @@ exports.homeRoutes = (req, res) => {
 // pass the values and render the faculty page
 exports.assignFaculty = async (req, res) => {
     const departments = await getDepartments()
-    const teachers = await getTeachers()
+    const branches = await getBranches()
     const semesters = await getSemesters()
+    const sessions = await getSessions()
     const courses = await getCourses()
-    res.render('faculty', {
-        departments: departments,
-        teachers: teachers,
-        semesters: semesters,
-        courses: courses,
-        message: message
-    })
+    const teachers = await getTeachers()
+    const rooms = await getRooms()
+    axios.get('http://localhost:3000/api/cell')
+        .then(function (response) {
+            res.render('faculty', {
+                departments: departments,
+                branches: branches,
+                semesters: semesters,
+                sessions: sessions,
+                message: message,
+                courses: courses,
+                teachers: teachers,
+                rooms: rooms,
+                users: response.data
+            })
+        })
+        .catch(err => {
+            res.send(err);
+        })
 }
 
 // pass the values and render the display page
@@ -182,4 +250,42 @@ exports.login = async (req, res) => {
     } else {
         res.render('login')
     }
+}
+
+exports.updateUser = (req, res) => {
+    if (!req.body) {
+        return res
+            .status(400)
+            .send({ message: "Data to update can not be empty" })
+    }
+    const id = req.params.id
+    cellModel.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
+        .then(data => {
+            if (!data) {
+                res.status(404).send({ message: `Cannot update user with ${id}. Maybe user not found!` })
+            } else {
+                res.send(data)
+            }
+        })
+        .catch(err => {
+            res.status(500).send({ message: "Error update user information" })
+        })
+}
+
+exports.update = async (req, res) => {
+    const courses = await getCourses()
+    const teachers = await getTeachers()
+    const rooms = await getRooms()
+    axios.get('http://localhost:3000/api/cell', { params: { id: req.query.id } })
+        .then(function (userData) {
+            res.render('update', {
+                user: userData.data,
+                courses: courses,
+                teachers: teachers,
+                rooms: rooms
+            })
+        })
+        .catch(err => {
+            res.send(err);
+        })
 }

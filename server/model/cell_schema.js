@@ -1,24 +1,20 @@
 const mongoose = require('mongoose')
 
 var schema = new mongoose.Schema({
-    dept: {
+    c_name: {
         type: 'string',
         required: true
     },
-    b_name: {
+    t_name: {
         type: 'string',
         required: true
     },
-    sem: {
-        type: 'string',
-        required: true
-    },
-    year: {
+    room_no: {
         type: 'string',
         required: true
     }
 })
 
-const db = mongoose.model('faculty', schema)
+const db = mongoose.model('cell', schema)
 
 module.exports = db

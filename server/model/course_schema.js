@@ -1,15 +1,11 @@
 const mongoose = require('mongoose')
 
 var schema = new mongoose.Schema({
-    course_id: {
+    id: {
         type: 'string',
         required: true
     },
-    sem: {
-        type: 'string',
-        required: true
-    },
-    course_name: {
+    c_name: {
         type: 'string',
         required: true
     }

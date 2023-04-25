@@ -3,11 +3,12 @@ body {
     background-image: url('/public/images/bg_main.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
 
-nav {
+.main-nav-items {
     display: flex;
     align-items: center;
     height: 60px;
@@ -15,7 +16,7 @@ nav {
     font-size: 20px;
 }
 
-nav a {
+.main-nav-items .link-page {
     text-decoration: none;
     color: #F5F5F5;
     font-size: 18px;
@@ -24,7 +25,7 @@ nav a {
     font-size: 20px;
 }
 
-nav a:hover {
+.main-nav-items .link-page:hover {
     text-decoration: none;
     color: #dadada;
     border-bottom: none;
@@ -47,27 +48,27 @@ h1 {
     margin-top: 0px;
 }
 
-.container {
+.container-class {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 500px;
+    height: max-content;
     width: 400px;
     margin: 0 auto;
     margin-top: 150px;
 }
 
-form {
+.form-class {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
-.form-control {
+.form-control-class {
     border: none;
     background-color: #f2f2f2;
     padding: 10px;
@@ -87,7 +88,7 @@ select option {
     font-size: 16px;
 }
 
-button {
+.submit-button {
     border: none;
     font-size: 20px;
     background-color: #fff;
@@ -105,7 +106,66 @@ button {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-button:hover {
+.submit-button:hover {
     background-color: #dadada;
     transition: background-color 0.5s;
+}
+
+.timetable {
+    width: fit-content;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+table {
+    /* display: none; */
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    text-align: left;
+    padding: 15px;
+}
+
+td {
+    text-align: left;
+    padding: 10px;
+    padding-left: 15px;
+    background-color: #fff;
+    cursor: pointer;
+    width: 500px;
+    height: max-content;
+    font-size: small;
+}
+
+table td {
+    border: 1px solid rgba(202, 202, 202, 0.637);
+}
+
+td:hover {
+    background-color: #dadada;
+}
+
+.lunch {
+    text-align: center;
+    cursor: default;
+    border: 0px solid rgba(202, 202, 202, 0.637);
+    font-weight: bold;
+}
+
+.lunch:hover {
+    background-color: #fff;
+}
+
+a {
+    text-decoration: none;
 }

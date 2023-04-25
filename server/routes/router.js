@@ -32,9 +32,18 @@ route.get('/about', controller.about)
  */
 route.get('/login', controller.login)
 
+/**
+ *  @description Update
+ *  @method GET /update
+ */
+route.get('/update', controller.update)
+
 // api
 route.post('/api/faculty', controller.create)
+route.post('/api/cell', controller.createCell)
 route.get('/api/faculty', controller.find)
+route.get('/api/cell', controller.findCell)
 route.get('/api/teacher', controller.assignFaculty)
+route.put('/api/cell/:id', controller.updateUser)
 
 module.exports = route
